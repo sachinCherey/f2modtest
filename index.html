@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="title">
+        <h1>Student Management CRUD</h1>
+    </div>
+    <div class="details">
+        <form id="myform" onsubmit="handleSubmit(event)">
+            <div class="first">
+                <div class="name">
+                    <input type="text" id="name" placeholder="Name" maxlength="20" required>
+                </div>
+                <div class="email">
+                    <input type="email" id="email" placeholder="Email" maxlength="10" required>
+                </div>
+
+                <div class="Gpa">
+                    <input type="number" id="gpa" placeholder="GPA" min="0" max="10" required>
+                </div>
+            </div>
+            <div class="second">
+
+                <div class="age">
+                    <input type="number" id="age" placeholder="Age" min="1" max="100" required>
+                </div>
+
+                <div class="degree">
+                    <input type="text" id="degree" placeholder="Degree" maxlength="7" required>
+                </div>
+            </div>
+
+            <div class="addbtn">
+                <input type="submit" value="Add Student" id="add">
+            </div>
+    </div>
+    </form>
+
+
+    <div class="main2">
+        <div class="searchbar">
+            <input type="text" id="searchbar" placeholder="Search By Name, email or degree">
+        </div>
+
+        <div class="table">
+            <table class="mytable" width="80%">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Student Name</th>
+                        <th>Email</th>
+                        <th>age</th>
+                        <th>GPA</th>
+                        <th>Degree</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="tab">
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <script>
+
+let id = 1;
+let a = [];
+
+function handleSubmit(event) {
+  event.preventDefault();
+  const form = document.getElementById('myForm');
+  let flag = 0;
+
+  if (a.length > 0) {
+    flag = 0;
+    for (let i = 0; i < a.length; i++) {
+      if (a[i].name == document.getElementById('name').value && a[i].email == document.getElementById('email').value) {
+        flag = 1;
+        break;
+      }
+    }
+  }
+
+  if (flag == 0) {
+    myFunction();
+  }
+}
+
+function myFunction() {
+  let name = document.getElementById('name').value;
+  let email = document.getElementById('email').value;
+  let gpa = document.getElementById('gpa').value;
+  let age = document.getElementById('age').value;
+  let degree = document.getElementById('degree').value;
+
+  let obj = { "Id": id, "name": name, "email": email, "gpa": gpa, "age": age, "degree": degree };
+  a.push(obj);
+
+  const table = document.getElementById("tab");
+  table.innerHTML = ""; 
+
+  for (let i = 0; i < a.length; i++) {
+    let newRow = `<tr>
+      <td>${a[i].Id}</td>
+      <td>${a[i].name}</td>
+      <td>${a[i].email}</td>
+      <td>${a[i].gpa}</td>
+      <td>${a[i].age}</td>
+      <td>${a[i].degree}</td>
+      <td><button onclick="editRow(${i})">Edit</button>
+        <button onclick="deleteRow(${i})">Delete</button></td>
+    </tr>`;
+
+    table.insertAdjacentHTML('beforeend', newRow);
+  }
+  
+  id++;
+}
+
+
+
+function deleteRow(index) {
+  a.splice(index, 1); // Remove the record from the array
+
+  const table = document.getElementById("tab");
+  table.innerHTML = ""; // Clear the table's contents
+
+  for (let i = 0; i < a.length; i++) {
+    let newRow = `<tr>
+      <td>${i}</td>
+      <td>${a[i].name}</td>
+      <td>${a[i].email}</td>
+      <td>${a[i].gpa}</td>
+      <td>${a[i].age}</td>
+      <td>${a[i].degree} Degree</td>
+      
+      <td>
+        <button onclick="deleteRow(${i})">Delete</button></td>
+    </tr>`;
+
+    table.insertAdjacentHTML('beforeend', newRow);
+  }
+}
+
+    </script>
+</body>
+
+</html>

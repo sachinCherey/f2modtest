@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title>h1{
+    color: white;
+
+}
+
+
+.first{
+    gap: 80px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+
+.second{
+    gap: 80px;
+    display: flex;
+    /* width: 90%; */
+    justify-content: start;
+    align-items: center;
+}
+
+input{
+   border: solid 1px #FFFFFF;
+    background-color: black;
+    width: 250px;
+    height: 40px;
+    color: #FFFFFF;
+}
+
+
+
+.title{
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+#add{
+    width: 340px;
+    height: 40px;
+}
+
+table, th, td {
+    border: 1px solid white;
+    border-collapse: collapse;
+  }
+
+th,td{
+    color: white;
+}
+
+.edit{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+#myform{
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    align-items: flex-start;
+}
+
+.main2{
+    display: flex;
+    gap: 14px;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.searchbar{
+    width: 80%;
+}
+
+.searchbar>input{
+    width: 100%;
+}
+
+.table{
+    display: contents;
+    width: 80%;
+}
